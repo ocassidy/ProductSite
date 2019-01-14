@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './products';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-product',
@@ -77,6 +78,10 @@ export class ProductListComponent implements OnInit {
 
     constructor() {
         this.filteredProducts = this.products;
+    }
+
+    onRatingClicked(message: string): void {
+        this.pageTitle = 'Product Rating = ' + message;
     }
 
     performFilter(filterBy: string): IProduct[] {
