@@ -9,14 +9,13 @@ import { catchError, tap} from 'rxjs/operators';
 })
 export class ProductService {
 
-    private productUrl = './Shared/products.json';
+    private productUrl = '../assets/products.json';
 
     constructor(private http: HttpClient) {}
 
     getProducts(): Observable <IProduct[]> {
         return this.http.get<IProduct[]>(this.productUrl)
         .pipe(
-            tap(data => console.log('All ' + JSON.stringify(data))),
             catchError(this.handleError)
             );
     }

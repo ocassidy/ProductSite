@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+    <p>Select Product To Edit</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Product</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let product of products" [value]="product.value">
+                {{product.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.productName" cdkFocusInitial>Submit</button>
+</div>

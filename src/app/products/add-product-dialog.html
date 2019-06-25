@@ -1,0 +1,31 @@
+<div mat-dialog-content>
+    <p>Enter Product Details</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Product ID</mat-label>
+        <input matInput [(ngModel)]="data.productID">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Product Name</mat-label>
+        <input matInput [(ngModel)]="data.productName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Product Code</mat-label>
+        <input matInput [(ngModel)]="data.productCode">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Product Price</mat-label>
+        <input matInput [(ngModel)]="data.productPrice">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Product Image URL</mat-label>
+        <input matInput [(ngModel)]="data.productImgUrl">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.productName" cdkFocusInitial>Submit</button>
+</div>

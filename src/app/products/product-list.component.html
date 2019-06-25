@@ -21,9 +21,20 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class="btn btn-primary" (click)='toggleImage()'>
-                                {{showImage ? 'Show Image' : 'Hide'}}
-                            </button>
+                            <div class="product-list-buttons">
+                                <button mat-raised-button (click)='toggleImage()'>
+                                    {{showImage ? 'Show Image' : 'Hide'}}
+                                </button>
+
+                                <button mat-raised-button (click)='openAddDialog()'>
+                                    Add Product
+                                </button>
+
+                                <button mat-raised-button (click)='openEditDialog()'>
+                                    Edit Product
+                                </button>
+                            </div>
+
                         </th>
                         <th>Product</th>
                         <th>Code</th>
@@ -36,7 +47,7 @@
                     <tr *ngFor='let product of filteredProducts'>
                         <td>
                             <img [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imageWidth'
-                                [style.margin.px]='imageMargin' *ngIf='showImage'>
+                                [style.margin.px]='imageMargin' *ngIf='showImage' alt="img">
                         </td>
                         <td>{{product.productName}}</td>
                         <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
