@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from './products';
+import { Product } from './product';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap} from 'rxjs/operators';
@@ -9,12 +9,12 @@ import { catchError, tap} from 'rxjs/operators';
 })
 export class ProductService {
 
-    private productUrl = './Shared/products.json';
+    private productUrl = '../../../assets/products.json';
 
     constructor(private http: HttpClient) {}
 
-    getProducts(): Observable <IProduct[]> {
-        return this.http.get<IProduct[]>(this.productUrl)
+    getProducts(): Observable <Product[]> {
+        return this.http.get<Product[]>(this.productUrl)
         .pipe(
             tap(data => console.log('All ' + JSON.stringify(data))),
             catchError(this.handleError)
@@ -24,7 +24,7 @@ export class ProductService {
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
         if (err.error instanceof ErrorEvent) {
-            errorMessage = `An error occured ${err.error.message}`;
+            errorMessage = `An error occurred ${err.error.message}`;
         } else {
             errorMessage = `Server returned code: ${err.status}, error is: ${err.message}`;
         }

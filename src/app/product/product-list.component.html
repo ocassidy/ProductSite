@@ -1,0 +1,52 @@
+<div class='card'>
+    <div class="card-header">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+            <a class="navbar-brand" href="#">{{pageTitle}}</a>
+            <button class="btn btn-outline-info my-2 my-sm-0" (click)='toggleImage()'>
+                {{showImage ? 'Show Image' : 'Hide'}}
+            </button>
+            <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
+                                   name="search" [(ngModel)]='listFilter'>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class='card-body'>
+        <div class="table-responsive">
+            <table class="table" *ngIf='products && products.length'>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor='let product of filteredProducts'>
+                    <td>
+                        <img [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imageWidth'
+                             [style.margin.px]='imageMargin' *ngIf='showImage'>
+                    </td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
+                    <td>{{product.releaseDate}}</td>
+                    <td>{{product.price | currency:'EUR': 'symbol' : '1.2-2' }}</td>
+                    <td>
+                        <app-star [rating]='product.starRating'
+                                  (ratingClicked)='onRatingClicked($event)'></app-star>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
